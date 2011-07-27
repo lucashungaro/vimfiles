@@ -27,5 +27,3 @@ function! Laptop()
   set lines=71 columns=120
   winpos 365 878
 endfunction
-
-map <unique> <silent> <Leader>t <Plug>PeepOpen
