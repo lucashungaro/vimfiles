@@ -1,0 +1,72 @@
+[submodule "snippets"]
+	path = snippets
+	url = git://github.com/akitaonrails/snipmate-snippets.git
+[submodule "bundle/rails"]
+	path = bundle/rails
+	url = git://github.com/tpope/vim-rails.git
+[submodule "bundle/cucumber"]
+	path = bundle/cucumber
+	url = git://github.com/tpope/vim-cucumber.git
+[submodule "bundle/haml"]
+	path = bundle/haml
+	url = git://github.com/tpope/vim-haml.git
+[submodule "bundle/surround"]
+	path = bundle/surround
+	url = git://github.com/tpope/vim-surround.git
+[submodule "bundle/NERD_tree"]
+	path = bundle/NERD_tree
+	url = git://github.com/scrooloose/nerdtree.git
+[submodule "bundle/NERD_commenter"]
+	path = bundle/NERD_commenter
+	url = git://github.com/scrooloose/nerdcommenter.git
+[submodule "bundle/ragtag"]
+	path = bundle/ragtag
+	url = git://github.com/tpope/vim-ragtag.git
+[submodule "bundle/fugitive"]
+	path = bundle/fugitive
+	url = git://github.com/tpope/vim-fugitive.git
+[submodule "bundle/markdown"]
+	path = bundle/markdown
+	url = git://github.com/tpope/vim-markdown.git
+[submodule "bundle/vividchalk"]
+	path = bundle/vividchalk
+	url = git://github.com/tpope/vim-vividchalk.git
+[submodule "bundle/git"]
+	path = bundle/git
+	url = git://github.com/tpope/vim-git.git
+[submodule "bundle/endwise"]
+	path = bundle/endwise
+	url = git://github.com/tpope/vim-endwise.git
+[submodule "bundle/snipmate"]
+	path = bundle/snipmate
+	url = git://github.com/akitaonrails/snipmate.vim.git
+[submodule "bundle/syntastic"]
+	path = bundle/syntastic
+	url = git://github.com/scrooloose/syntastic.git
+[submodule "bundle/pastie"]
+	path = bundle/pastie
+	url = git://github.com/tpope/vim-pastie.git
+[submodule "bundle/Command-T"]
+	path = bundle/Command-T
+	url = git://github.com/akitaonrails/Command-T.git
+[submodule "bundle/textile"]
+	path = bundle/textile
+	url = git://github.com/timcharper/textile.vim.git
+[submodule "bundle/vim-ruby"]
+	path = bundle/vim-ruby
+	url = git://github.com/vim-ruby/vim-ruby.git
+[submodule "bundle/unimpaired"]
+	path = bundle/unimpaired
+	url = git://github.com/tpope/vim-unimpaired.git
+[submodule "bundle/scss-syntax"]
+	path = bundle/scss-syntax
+	url = http://github.com/cakebaker/scss-syntax.vim.git
+[submodule "bundle/markdown-preview"]
+	path = bundle/markdown-preview
+	url = http://github.com/robgleeson/vim-markdown-preview.git
+[submodule "bundle/AutoComplPop"]
+	path = bundle/AutoComplPop
+	url = git://github.com/vim-scripts/AutoComplPop.git
+[submodule "bundle/vim-rooter"]
+	path = bundle/vim-rooter
+	url = https://github.com/airblade/vim-rooter.git
