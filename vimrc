@@ -225,3 +225,7 @@ function! s:align()
   endif
 endfunction
 "endif
+
+" a few useful shortcuts - taken from https://github.com/lsdr/vim-folder/blob/master/_vimrc :)
+command! Rehash source ~/.vimrc
+command! Helptags helptags ~/.vim/doc
