@@ -27,3 +27,6 @@ function! Laptop()
   set lines=71 columns=120
   winpos 365 878
 endfunction
+
+macmenu &File.New\ Tab key=<nop>
+map <D-t> <Plug>PeepOpen
