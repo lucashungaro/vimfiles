@@ -7,6 +7,9 @@ silent! call pathogen#helptags()
 syntax enable                     " Turn on syntax highlighting.
 filetype plugin indent on         " Turn on file type detection.
 
+let mapleader=","
+nnoremap ; :
+
 runtime macros/matchit.vim        " Load matchit.vim plugin.
 
 set showcmd                       " Display incomplete commands.
@@ -96,6 +99,9 @@ nmap gV `[v`]
 vnoremap <silent> * :call VisualSearch('f')<CR>
 vnoremap <silent> # :call VisualSearch('b')<CR>
 
+" indent, reselect
+:vmap < <gv
+:vmap > >gv
 
 " TODO:
 " - move this Ruby commenting into a filetype plugin.
@@ -243,3 +249,4 @@ function! InsertTabWrapper()
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
+
