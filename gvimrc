@@ -7,9 +7,8 @@ if has("gui_macvim")
 endif
 
 set background=dark               " Dark background.
-colorscheme wombat
-" colorscheme grb3                  " Gary Bernhardt: http://bitbucket.org/garybernhardt/dotfiles/src/tip/.vimrc
-set guifont=Inconsolata:h16       " Decent font.
+colorscheme badwolf
+set guifont=Inconsolata:h20       " Decent font.
 
 highlight SPELLING guibg=blue     " Highlight likely typos.
 match SPELLING /toin/

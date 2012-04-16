@@ -26,17 +26,13 @@ set cpo&vim
 
 function s:LaunchPeepOpenViaVim()
   let cwd = getcwd()
-  silent exe "!open -a PeepOpen " . shellescape(cwd)
+  silent exe "!open \"peepopen://" . shellescape(cwd) . "?editor=MacVim\""
 endfunction
 
 command! PeepOpen :call <SID>LaunchPeepOpenViaVim()
 
 noremap <unique> <script> <Plug>PeepOpen <SID>Launch
 noremap <SID>Launch :call <SID>LaunchPeepOpenViaVim()<CR>
-
-if !hasmapto('<Plug>PeepOpen')
-  map <unique> <silent> <Leader>p <Plug>PeepOpen
-endif
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
