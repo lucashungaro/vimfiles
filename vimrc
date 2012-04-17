@@ -70,9 +70,6 @@ let g:sql_type_default = "mysql"
 nnoremap / /\v
 vnoremap / /\v
 
-" Command-T shortcut
-nnoremap <Leader>t :CommandT<CR>
-
 " OS X-like space bar to scroll.
 nnoremap <Space> <C-F>
 
@@ -238,6 +235,24 @@ endfunction
 map <leader>n :call RenameFile()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MAPS TO JUMP TO SPECIFIC COMMAND-T TARGETS AND FILES
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>ga :CommandTFlush<cr>\|:CommandT app/assets<cr>
+map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
+map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
+map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
+map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
+map <leader>gC :CommandTFlush<cr>\|:CommandT config<cr>
+map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
+map <leader>gp :CommandTFlush<cr>\|:CommandT public<cr>
+map <leader>gf :CommandTFlush<cr>\|:CommandT features<cr>
+map <leader>gs :CommandTFlush<cr>\|:CommandT spec<cr>
+map <leader>gg :topleft 100 :split Gemfile<cr>
+map <leader>gt :CommandTFlush<cr>\|:CommandTTag<cr>
+map <leader>t :CommandTFlush<cr>\|:CommandT<cr>
+map <leader>T :CommandTFlush<cr>\|:CommandT %%<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PROMOTE VARIABLE TO RSPEC LET
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! PromoteToLet()
@@ -249,36 +264,6 @@ function! PromoteToLet()
 endfunction
 :command! PromoteToLet :call PromoteToLet()
 :map <leader>p :PromoteToLet<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SWITCH BETWEEN TEST AND PRODUCTION CODE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! OpenTestAlternate()
-  let new_file = AlternateForCurrentFile()
-  exec ':e ' . new_file
-endfunction
-function! AlternateForCurrentFile()
-  let current_file = expand("%")
-  let new_file = current_file
-  let in_spec = match(current_file, '^spec/') != -1
-  let going_to_spec = !in_spec
-  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') != -1
-  if going_to_spec
-    if in_app
-      let new_file = substitute(new_file, '^app/', '', '')
-    end
-    let new_file = substitute(new_file, '\.rb$', '_spec.rb', '')
-    let new_file = 'spec/' . new_file
-  else
-    let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
-    let new_file = substitute(new_file, '^spec/', '', '')
-    if in_app
-      let new_file = 'app/' . new_file
-    end
-  endif
-  return new_file
-endfunction
-nnoremap <leader>. :call OpenTestAlternate()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RUNNING TESTS
@@ -327,6 +312,15 @@ function! RunTestFile(...)
     call RunTests(t:grb_test_file . command_suffix)
 endfunction
 
+function! RunTestFileNoRails()
+    let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\)$') != -1
+    if in_test_file
+       call SetTestFile()
+       :w
+       exec ":!rspec --color " . t:grb_test_file
+    end
+endfunction
+
 function! RunNearestTest()
     let spec_line_number = line('.')
     call RunTestFile(":" . spec_line_number . " -b")
@@ -334,6 +328,93 @@ endfunction
 
 map <leader>s :call RunTestFile()<cr>
 map <leader>S :call RunNearestTest()<cr>
+map <leader>b :call RunTestFileNoRails()<cr>
 map <leader>a :call RunTests('')<cr>
 map <leader>c :w\|:!script/features<cr>
 map <leader>w :w\|:!script/features --profile wip<cr>
+
+
+" All functions bellow from https://github.com/vim-scripts/Specky
+"
+" When in ruby code or an rspec BDD file, try and search recursively through
+" the filesystem (within the current working directory) to find the
+" respectively matching file.  (code to spec, spec to code.)
+"
+" This operates under the assumption that you've used chdir() to put vim into
+" the top level directory of your project.
+
+function! SpecSwitcher()
+  " If we aren't in a ruby or rspec file then we probably don't care
+  " too much about this function.
+  if &ft != 'ruby' && &ft != 'rspec'
+    call s:err( "Not currently in ruby or rspec mode." )
+    return
+  endif
+
+  " Ensure that we can always search recursively for files to open.
+  let l:orig_path = &path
+  set path=**
+
+  " Get the current buffer name, and determine if it is a spec file.
+  "
+  " /tmp/something/whatever/rubycode.rb ---> rubycode.rb
+  " A requisite of the specfiles is that they match to the class/code file,
+  " this emulates the eigenclass stuff, but doesn't require the same
+  " directory structures.
+  "
+  " rubycode.rb ---> rubycode_spec.rb
+  let l:filename     = matchstr( bufname('%'), '[0-9A-Za-z_.-]*$' )
+  let l:is_spec_file = match( l:filename, '_spec.rb$' ) == -1 ? 0 : 1
+
+  if l:is_spec_file
+    let l:other_file = substitute( l:filename, '_spec\.rb$', '\.rb', '' )
+  else
+    let l:other_file = substitute( l:filename, '\.rb$', '_spec\.rb', '' )
+  endif
+
+  let l:bufnum = bufnr( l:other_file )
+  if l:bufnum == -1
+    " The file isn't currently open, so let's search for it.
+    execute 'find ' . l:other_file
+  else
+    " We've already got an open buffer with this file, just go to it.
+    execute 'buffer' . l:bufnum
+  endif
+
+  "execute 'set path=' . l:orig_path
+endfunction
+
+nnoremap <leader>. :call SpecSwitcher()<cr>
+
+" Wrap the word under the cursor in quotes.  If in ruby mode,
+" cycle between quoting styles and symbols.
+"
+" variable -> "variable" -> 'variable' -> :variable
+"
+function! QuoteSwitcher()
+  let l:type = strpart( expand("<cWORD>"), 0, 1 )
+  let l:word = expand("<cword>")
+
+  if l:type == '"'
+    " Double quote to single
+    execute ":normal viWc'" . l:word . "'"
+
+  elseif l:type == "'"
+    if &ft == 'ruby' || &ft == 'rspec'
+      " Single quote to symbol
+      execute ':normal viWc:' . l:word
+    else
+      " Single quote to double
+      execute ':normal viWc"' . l:word . '"'
+    end
+
+  else
+    " Whatever to double quote
+    execute ':normal viWc"' . l:word . '"'
+  endif
+
+  " Move the cursor back into the cl:word
+  call cursor( 0, getpos('.')[2] - 1 )
+endfunction
+
+nnoremap <leader>qs :call QuoteSwitcher()<cr>
