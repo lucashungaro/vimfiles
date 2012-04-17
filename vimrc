@@ -193,9 +193,6 @@ vmap <Leader>ts :Tabularize /:/l1c0l0<CR>
 command! Rehash source ~/.vimrc
 command! Helptags helptags ~/.vim/doc
 
-" http://majutsushi.github.com/tagbar/
-nmap <F8> :TagbarToggle<CR>
-
 " all the code below from https://github.com/garybernhardt/dotfiles/blob/master/.vimrc
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
