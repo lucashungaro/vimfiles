@@ -24,6 +24,8 @@ set hidden                        " Handle multiple buffers better.
 set wildmenu                      " Enhanced command line completion.
 set wildmode=longest,list         " Complete files like a shell.
 
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/**,db/sphinx,log/**,tmp/**,public/uploads
+
 " Better Completion
 set completeopt=longest,menuone,preview
 
@@ -65,6 +67,7 @@ set background=dark
 colorscheme badwolf
 
 let g:sql_type_default = "mysql"
+let g:CommandTMaxFiles = 5000
 
 " Very magic regexes.
 nnoremap / /\v
