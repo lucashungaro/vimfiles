@@ -24,7 +24,7 @@ set hidden                        " Handle multiple buffers better.
 set wildmenu                      " Enhanced command line completion.
 set wildmode=longest,list         " Complete files like a shell.
 
-set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/**,db/sphinx,log/**,tmp/**,public/uploads
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/**,db/sphinx,log/**,tmp/**,public/uploads,coverage/**
 
 " Better Completion
 set completeopt=longest,menuone,preview
