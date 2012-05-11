@@ -12,6 +12,8 @@ set encoding=utf-8
 let mapleader=","
 nnoremap ; :
 
+ca W w
+
 runtime macros/matchit.vim        " Load matchit.vim plugin.
 
 set showcmd                       " Display incomplete commands.
@@ -241,11 +243,10 @@ map <leader>ga :CommandTFlush<cr>\|:CommandT app/assets<cr>
 map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
 map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
 map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
+map <leader>gp :CommandTFlush<cr>\|:CommandT app/presenters<cr>
 map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
 map <leader>gC :CommandTFlush<cr>\|:CommandT config<cr>
 map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
-map <leader>gp :CommandTFlush<cr>\|:CommandT public<cr>
-map <leader>gf :CommandTFlush<cr>\|:CommandT features<cr>
 map <leader>gs :CommandTFlush<cr>\|:CommandT spec<cr>
 map <leader>gg :topleft 100 :split Gemfile<cr>
 map <leader>gt :CommandTFlush<cr>\|:CommandTTag<cr>
@@ -263,7 +264,7 @@ function! PromoteToLet()
   :normal ==
 endfunction
 :command! PromoteToLet :call PromoteToLet()
-:map <leader>p :PromoteToLet<cr>
+:map <leader>l :PromoteToLet<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RUNNING TESTS
@@ -330,8 +331,8 @@ map <leader>s :call RunTestFile()<cr>
 map <leader>S :call RunNearestTest()<cr>
 map <leader>b :call RunTestFileNoRails()<cr>
 map <leader>a :call RunTests('')<cr>
-map <leader>c :w\|:!script/features<cr>
-map <leader>w :w\|:!script/features --profile wip<cr>
+" map <leader>c :w\|:!script/features<cr>
+" map <leader>w :w\|:!script/features --profile wip<cr>
 
 
 " All functions bellow from https://github.com/vim-scripts/Specky
