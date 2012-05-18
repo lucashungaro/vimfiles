@@ -7,14 +7,19 @@ silent! call pathogen#helptags()
 syntax enable                     " Turn on syntax highlighting.
 filetype plugin indent on         " Turn on file type detection.
 
-set encoding=utf-8
-
 let mapleader=","
 nnoremap ; :
 
 ca W w
 
 runtime macros/matchit.vim        " Load matchit.vim plugin.
+
+set encoding=utf-8
+
+set ttyfast                       " Optimize for fast terminal connections
+
+set binary                        " Don't add empty newlines at the end of files
+set noeol                         "
 
 set showcmd                       " Display incomplete commands.
 set showmode                      " Display the mode you're in.
@@ -33,15 +38,16 @@ set completeopt=longest,menuone,preview
 
 set ignorecase                    " Case-insensitive searching.
 set smartcase                     " But case-sensitive if expression contains a capital letter.
+set incsearch                     " Highlight matches as you type.
+set hlsearch                      " Highlight matches.
+set gdefault                      " Add the g flag to search/replace by default
 
 set number                        " Show absolute line numbers (cf. relativenumber).
 set ruler                         " Show cursor position.
 set cursorline                    " Highlight current line
 set laststatus=2                  " Always show a status line.
 
-set incsearch                     " Highlight matches as you type.
-set hlsearch                      " Highlight matches.
-
+set nostartofline                 " Don’t reset cursor to start of line when moving around.
 set wrap                          " Turn on line wrapping.
 set scrolloff=3                   " Show 3 lines of context around the cursor.
 
