@@ -31,13 +31,14 @@ set backspace=indent,eol,start    " Intuitive backspacing.
 
 set hidden                        " Handle multiple buffers better.
 
+" Better Completion
+set complete=.,b,u,]
+set completeopt=menu,preview
 set wildmenu                      " Enhanced command line completion.
-set wildmode=longest,list         " Complete files like a shell.
+set wildmode=longest,list:longest " Complete files like a shell.
 
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,*.jpg,*.jpeg,*.png,*.gif,vendor/**,db/sphinx,log/**,tmp/**,public/uploads,coverage/**
 
-" Better Completion
-set completeopt=longest,menuone,preview
 
 set ignorecase                    " Case-insensitive searching.
 set smartcase                     " But case-sensitive if expression contains a capital letter.
