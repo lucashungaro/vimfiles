@@ -39,6 +39,7 @@ set wildmode=longest,list:longest " Complete files like a shell.
 
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,*.jpg,*.jpeg,*.png,*.gif,vendor/**,db/sphinx,log/**,tmp/**,public/uploads,coverage/**
 
+let g:ctrlp_custom_ignore = "vendor"
 
 set ignorecase                    " Case-insensitive searching.
 set smartcase                     " But case-sensitive if expression contains a capital letter.
@@ -79,7 +80,8 @@ set background=dark
 colorscheme badwolf
 
 let g:sql_type_default = "mysql"
-let g:CommandTMaxFiles = 5000
+
+set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " Very magic regexes.
 nnoremap / /\v
@@ -249,19 +251,32 @@ map <leader>n :call RenameFile()<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MAPS TO JUMP TO SPECIFIC COMMAND-T TARGETS AND FILES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>ga :CommandTFlush<cr>\|:CommandT app/assets<cr>
-map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
-map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
-map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
-map <leader>gp :CommandTFlush<cr>\|:CommandT app/presenters<cr>
-map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
-map <leader>gC :CommandTFlush<cr>\|:CommandT config<cr>
-map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
-map <leader>gs :CommandTFlush<cr>\|:CommandT spec<cr>
+"map <leader>ga :CommandTFlush<cr>\|:CommandT app/assets<cr>
+"map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
+"map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
+"map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
+"map <leader>gp :CommandTFlush<cr>\|:CommandT app/presenters<cr>
+"map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
+"map <leader>gC :CommandTFlush<cr>\|:CommandT config<cr>
+"map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
+"map <leader>gs :CommandTFlush<cr>\|:CommandT spec<cr>
+"map <leader>gg :topleft 100 :split Gemfile<cr>
+"map <leader>gt :CommandTFlush<cr>\|:CommandTTag<cr>
+"map <leader>t :CommandTFlush<cr>\|:CommandT<cr>
+"map <leader>T :CommandTFlush<cr>\|:CommandT %%<cr>
+map <leader>t :CtrlP .<cr>
+map <leader>T :CtrlP .<cr>
+
+map <leader>ga :CtrlP app/assets<cr>
+map <leader>gc :CtrlP app/controllers<cr>
+map <leader>gh :CtrlP app/helpers<cr>
+map <leader>gm :CtrlP app/models<cr>
+map <leader>gp :CtrlP app/presenters<cr>
+map <leader>gv :CtrlP app/views<cr>
+map <leader>gC :CtrlP config<cr>
+map <leader>gl :CtrlP lib<cr>
+map <leader>gs :CtrlP spec<cr>
 map <leader>gg :topleft 100 :split Gemfile<cr>
-map <leader>gt :CommandTFlush<cr>\|:CommandTTag<cr>
-map <leader>t :CommandTFlush<cr>\|:CommandT<cr>
-map <leader>T :CommandTFlush<cr>\|:CommandT %%<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PROMOTE VARIABLE TO RSPEC LET
