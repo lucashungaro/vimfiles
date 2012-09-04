@@ -76,8 +76,8 @@ set noequalalways                 " Resize windows as little as possible.
 set autoread                      " Automatically re-read files changed outside Vim.
 
 set t_Co=256 " 256 colors
-set background=dark
-colorscheme badwolf
+"set background=dark
+colorscheme Tomorrow-Night-Bright
 
 let g:sql_type_default = "mysql"
 
