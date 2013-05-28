@@ -1,28 +1,28 @@
-" Tomorrow - Full Colour and 256 Colour
+" Tomorrow Night Blue - Full Colour and 256 Colour
 " http://chriskempson.com
 "
 " Hex colour conversion functions borrowed from the theme "Desert256""
 
 " Default GUI Colours
-let s:foreground = "4d4d4c"
-let s:background = "fafafa"
-let s:selection = "d6d6d6"
-let s:line = "efefef"
-let s:comment = "8e908c"
-let s:red = "c82829"
-let s:orange = "f5871f"
-let s:yellow = "eab700"
-let s:green = "718c00"
-let s:aqua = "3e999f"
-let s:blue = "4271ae"
-let s:purple = "8959a8"
-let s:window = "efefef"
+let s:foreground = "ffffff"
+let s:background = "002451"
+let s:selection = "003f8e"
+let s:line = "00346e"
+let s:comment = "7285b7"
+let s:red = "ff9da4"
+let s:orange = "ffc58f"
+let s:yellow = "ffeead"
+let s:green = "d1f1a9"
+let s:aqua = "99ffff"
+let s:blue = "bbdaff"
+let s:purple = "ebbbff"
+let s:window = "4d5057"
 
-set background=light
+set background=dark
 hi clear
 syntax reset
 
-let g:colors_name = "Tomorrow"
+let g:colors_name = "Tomorrow-Night-Blue"
 
 if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	" Returns an approximate grey index for the given grey level
@@ -234,10 +234,10 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 
 	" Vim Highlighting
 	call <SID>X("Normal", s:foreground, s:background, "")
-  highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+	call <SID>X("LineNr", s:selection, "", "")
 	call <SID>X("NonText", s:selection, "", "")
 	call <SID>X("SpecialKey", s:selection, "", "")
-	call <SID>X("Search", s:foreground, s:yellow, "")
+	call <SID>X("Search", s:background, s:yellow, "")
 	call <SID>X("TabLine", s:foreground, s:background, "reverse")
 	call <SID>X("StatusLine", s:window, s:yellow, "reverse")
 	call <SID>X("StatusLineNC", s:window, s:foreground, "reverse")
