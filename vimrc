@@ -37,9 +37,7 @@ set completeopt=menu,preview
 set wildmenu                      " Enhanced command line completion.
 set wildmode=longest,list:longest " Complete files like a shell.
 
-set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,*.jpg,*.jpeg,*.png,*.gif,vendor/**,db/sphinx,log/**,tmp/**,public/uploads,coverage/**
-
-let g:ctrlp_custom_ignore = "vendor"
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,*.jpg,*.jpeg,*.png,*.gif,*.log,*/vendor/*,db/sphinx,*/log/*,*/tmp/*,public/uploads,*/coverage/*
 
 set ignorecase                    " Case-insensitive searching.
 set smartcase                     " But case-sensitive if expression contains a capital letter.
@@ -77,9 +75,9 @@ set autoread                      " Automatically re-read files changed outside 
 
 set t_Co=256 " 256 colors
 set background=dark
-colorscheme Tomorrow-Night-Bright
+colorscheme Tomorrow-Night
 
-set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
+let g:airline_theme="molokai"
 
 let g:sql_type_default = "mysql"
 
@@ -274,6 +272,7 @@ map <leader>gc :CtrlP app/controllers<cr>
 map <leader>gh :CtrlP app/helpers<cr>
 map <leader>gm :CtrlP app/models<cr>
 map <leader>gp :CtrlP app/presenters<cr>
+map <leader>gS :CtrlP app/services<cr>
 map <leader>gv :CtrlP app/views<cr>
 map <leader>gC :CtrlP config<cr>
 map <leader>gl :CtrlP lib<cr>
