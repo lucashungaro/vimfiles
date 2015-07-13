@@ -77,7 +77,7 @@ set autoread                      " Automatically re-read files changed outside 
 
 set t_Co=256 " 256 colors
 set background=dark
-colorscheme Tomorrow-Night
+colorscheme Tomorrow-Night-Eighties
 
 let g:airline_theme="molokai"
 
@@ -97,6 +97,9 @@ nnoremap <Leader><space> :noh<CR>
 
 " Kill trailing White Space
 nnoremap <Leader>kws :%s/\s\+$//<CR>
+
+" Reloads vim config
+noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
 " System clipboard interaction
 " From
