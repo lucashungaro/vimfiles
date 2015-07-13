@@ -10,6 +10,8 @@ set clipboard=unnamed
 syntax enable                     " Turn on syntax highlighting.
 filetype plugin indent on         " Turn on file type detection.
 
+set colorcolumn=100
+
 let mapleader=","
 nnoremap ; :
 
@@ -37,7 +39,7 @@ set completeopt=menu,preview
 set wildmenu                      " Enhanced command line completion.
 set wildmode=longest,list:longest " Complete files like a shell.
 
-set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,*.jpg,*.jpeg,*.png,*.gif,*.log,*/vendor/*,db/sphinx,*/log/*,*/tmp/*,public/uploads,*/coverage/*
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,*.jpg,*.jpeg,*.png,*.gif,*.log,*/vendor/*,db/sphinx,*/log/*,*/tmp/*,public/uploads,*/coverage/*,*/node_modules/*
 
 set ignorecase                    " Case-insensitive searching.
 set smartcase                     " But case-sensitive if expression contains a capital letter.
@@ -210,6 +212,16 @@ vmap <Leader>ts :Tabularize /:/l1c0l0<CR>
 command! Rehash source ~/.vimrc
 command! Helptags helptags ~/.vim/doc
 
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 " all the code below from https://github.com/garybernhardt/dotfiles/blob/master/.vimrc
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -251,23 +263,11 @@ map <leader>n :call RenameFile()<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MAPS TO JUMP TO SPECIFIC COMMAND-T TARGETS AND FILES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"map <leader>ga :CommandTFlush<cr>\|:CommandT app/assets<cr>
-"map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
-"map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
-"map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
-"map <leader>gp :CommandTFlush<cr>\|:CommandT app/presenters<cr>
-"map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
-"map <leader>gC :CommandTFlush<cr>\|:CommandT config<cr>
-"map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
-"map <leader>gs :CommandTFlush<cr>\|:CommandT spec<cr>
-"map <leader>gg :topleft 100 :split Gemfile<cr>
-"map <leader>gt :CommandTFlush<cr>\|:CommandTTag<cr>
-"map <leader>t :CommandTFlush<cr>\|:CommandT<cr>
-"map <leader>T :CommandTFlush<cr>\|:CommandT %%<cr>
 map <leader>t :CtrlP .<cr>
 map <leader>T :CtrlP .<cr>
 
 map <leader>ga :CtrlP app/assets<cr>
+map <leader>gga :CtrlP gulp/assets<cr>
 map <leader>gc :CtrlP app/controllers<cr>
 map <leader>gh :CtrlP app/helpers<cr>
 map <leader>gm :CtrlP app/models<cr>
@@ -277,7 +277,7 @@ map <leader>gv :CtrlP app/views<cr>
 map <leader>gC :CtrlP config<cr>
 map <leader>gl :CtrlP lib<cr>
 map <leader>gs :CtrlP spec<cr>
-map <leader>gg :topleft 100 :split Gemfile<cr>
+map <leader>ggf :topleft 100 :split Gemfile<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PROMOTE VARIABLE TO RSPEC LET

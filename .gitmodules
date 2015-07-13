@@ -34,3 +34,6 @@
 [submodule "bundle/rooter.vim"]
 	path = bundle/rooter.vim
 	url = https://github.com/airblade/vim-rooter.git
+[submodule "bundle/jasmine"]
+	path = bundle/jasmine
+	url = git://github.com/claco/jasmine.vim.git
