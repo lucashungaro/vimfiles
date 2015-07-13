@@ -188,10 +188,25 @@ nmap <script> <silent> <unique> <Leader><Leader> :BufExplorer<CR>
 let g:bufExplorerShowRelativePath=1
 "let g:bufExplorerShowUnlisted=1
 
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  let g:ackprg = 'ag --nogroup --nocolor --column'
+endif
+
 " ack.vim
 nmap <silent> <unique> <Leader>a :Ack
 nmap <silent> <unique> <Leader>as :AckFromSearch
 nmap <silent> <unique> <Leader>af :AckFile
+
+
+" CtrlP
+let g:ctrlp_match_window = 'order:ttb,max:20'
 
 " Tabularize
 "if exists(':Tabularize')
@@ -264,7 +279,7 @@ map <leader>n :call RenameFile()<cr>
 " MAPS TO JUMP TO SPECIFIC COMMAND-T TARGETS AND FILES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader>t :CtrlP .<cr>
-map <leader>T :CtrlP .<cr>
+map <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
 
 map <leader>ga :CtrlP app/assets<cr>
 map <leader>gga :CtrlP gulp/assets<cr>
